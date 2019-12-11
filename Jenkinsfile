@@ -2,17 +2,7 @@ pipeline {
   agent any
   stages {
 
-    // Note: Add build stage here
-
-    // Note: Add deploy stage here
-
-    // Note: Add gating stage here
-
-    // Note: Add prod stage here
-
-  }
-}
-stage('Build') {
+    stage('Build') {
       agent {
         label "lead-toolchain-skaffold"
       }
@@ -24,7 +14,8 @@ stage('Build') {
         }
       }
     }
-stage("Deploy to Staging") {
+
+    stage("Deploy to Staging") {
       agent {
         label "lead-toolchain-skaffold"
       }
@@ -43,7 +34,8 @@ stage("Deploy to Staging") {
         }
       }
     }
-stage ('Manual Ready Check') {
+
+    stage ('Manual Ready Check') {
       agent none
       when {
         branch 'master'
@@ -58,7 +50,8 @@ stage ('Manual Ready Check') {
         echo "Deploying"
       }
     }
-stage("Deploy to Production") {
+
+    stage("Deploy to Production") {
       agent {
         label "lead-toolchain-skaffold"
       }
@@ -77,3 +70,10 @@ stage("Deploy to Production") {
         }
       }
     }
+
+  }
+}
+  
+
+
+
